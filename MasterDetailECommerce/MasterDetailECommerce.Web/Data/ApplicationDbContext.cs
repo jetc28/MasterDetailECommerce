@@ -10,16 +10,19 @@ namespace MasterDetailECommerce.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext()
-        {
-        }
-
+       
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {            
+            base.OnModelCreating(builder);
+        }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Departament> Departaments { get; set; }
-        public DbSet<MasterDetailECommerce.Web.Models.City> City { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Company> Companies { get; set; }
     }
 }

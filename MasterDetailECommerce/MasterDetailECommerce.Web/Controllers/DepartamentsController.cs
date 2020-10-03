@@ -22,7 +22,7 @@ namespace MasterDetailECommerce.Web.Controllers
         // GET: Departaments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Departaments.ToListAsync());
+            return View(await _context.Departaments.OrderBy(d=>d.Name).ToListAsync());
         }
 
         // GET: Departaments/Details/5

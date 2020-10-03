@@ -54,11 +54,19 @@ namespace MasterDetailECommerce.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Date,Stock")] Product product)
+        public async Task<IActionResult> Create(Product product)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                var prod = new Product
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    Price = product.Price,
+                    Date = DateTime.Now,
+                    Stock = product.Stock,
+                };
+                _context.Add(prod);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

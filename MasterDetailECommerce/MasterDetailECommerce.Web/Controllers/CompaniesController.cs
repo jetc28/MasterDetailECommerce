@@ -7,27 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MasterDetailECommerce.Web.Data;
 using MasterDetailECommerce.Web.Models;
-using MasterDetailECommerce.Web.Helpers;
 
 namespace MasterDetailECommerce.Web.Controllers
 {
-    public class CitiesController : Controller
+    public class CompaniesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CitiesController(ApplicationDbContext context)
+        public CompaniesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Cities
+        // GET: Companies
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.City.Include(c => c.Departament);
+            var applicationDbContext = _context.Companies.Include(c => c.City).Include(c => c.Departament);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Cities/Details/5
+        // GET: Companies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,50 +34,45 @@ namespace MasterDetailECommerce.Web.Controllers
                 return NotFound();
             }
 
-            var city = await _context.City
+            var company = await _context.Companies
+                .Include(c => c.City)
                 .Include(c => c.Departament)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (city == null)
+            if (company == null)
             {
                 return NotFound();
             }
 
-            return View(city);
+            return View(company);
         }
 
-        // GET: Cities/Create
+        // GET: Companies/Create
         public IActionResult Create()
         {
-            var departaments = _context.Departaments.ToList();
-            departaments.Add(new Departament
-            {
-                Id = 0,
-                Name = "[Seleccionar departamento...]",
-            });
-            departaments = departaments.OrderBy(d => d.Name).ToList();
-
-            ViewData["DepartamentId"] = new SelectList(departaments, "Id", "Name");
+            ViewData["CityId"] = new SelectList(_context.City, "Id", "Name");
+            ViewData["DepartamentId"] = new SelectList(_context.Departaments, "Id", "Name");
             return View();
         }
 
-        // POST: Cities/Create
+        // POST: Companies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DepartamentId")] City city)
+        public async Task<IActionResult> Create([Bind("Id,Name,Phone,Address,Logo,DepartamentId,CityId")] Company company)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(city);
+                _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Departaments.OrderBy(d => d.Name).ToList(), "Id", "Name", city.DepartamentId);
-            return View(city);
+            ViewData["CityId"] = new SelectList(_context.City, "Id", "Name", company.CityId);
+            ViewData["DepartamentId"] = new SelectList(_context.Departaments, "Id", "Name", company.DepartamentId);
+            return View(company);
         }
 
-        // GET: Cities/Edit/5
+        // GET: Companies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,23 +80,24 @@ namespace MasterDetailECommerce.Web.Controllers
                 return NotFound();
             }
 
-            var city = await _context.City.FindAsync(id);
-            if (city == null)
+            var company = await _context.Companies.FindAsync(id);
+            if (company == null)
             {
                 return NotFound();
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Departaments.OrderBy(c => c.Name), "Id", "Name", city.DepartamentId);
-            return View(city);
+            ViewData["CityId"] = new SelectList(_context.City, "Id", "Name", company.CityId);
+            ViewData["DepartamentId"] = new SelectList(_context.Departaments, "Id", "Name", company.DepartamentId);
+            return View(company);
         }
 
-        // POST: Cities/Edit/5
+        // POST: Companies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,DepartamentId")] City city)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Phone,Address,Logo,DepartamentId,CityId")] Company company)
         {
-            if (id != city.Id)
+            if (id != company.Id)
             {
                 return NotFound();
             }
@@ -111,12 +106,12 @@ namespace MasterDetailECommerce.Web.Controllers
             {
                 try
                 {
-                    _context.Update(city);
+                    _context.Update(company);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CityExists(city.Id))
+                    if (!CompanyExists(company.Id))
                     {
                         return NotFound();
                     }
@@ -127,11 +122,12 @@ namespace MasterDetailECommerce.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Departaments.OrderBy(c => c.Name), "Id", "Name", city.DepartamentId);
-            return View(city);
+            ViewData["CityId"] = new SelectList(_context.City, "Id", "Name", company.CityId);
+            ViewData["DepartamentId"] = new SelectList(_context.Departaments, "Id", "Name", company.DepartamentId);
+            return View(company);
         }
 
-        // GET: Cities/Delete/5
+        // GET: Companies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,31 +135,32 @@ namespace MasterDetailECommerce.Web.Controllers
                 return NotFound();
             }
 
-            var city = await _context.City
+            var company = await _context.Companies
+                .Include(c => c.City)
                 .Include(c => c.Departament)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (city == null)
+            if (company == null)
             {
                 return NotFound();
             }
 
-            return View(city);
+            return View(company);
         }
 
-        // POST: Cities/Delete/5
+        // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var city = await _context.City.FindAsync(id);
-            _context.City.Remove(city);
+            var company = await _context.Companies.FindAsync(id);
+            _context.Companies.Remove(company);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CityExists(int id)
+        private bool CompanyExists(int id)
         {
-            return _context.City.Any(e => e.Id == id);
+            return _context.Companies.Any(e => e.Id == id);
         }
     }
 }

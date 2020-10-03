@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace MasterDetailECommerce.Web.Helpers
 {
-    public class CombosHelper : IDisposable
+    public class CombosHelper //: IDisposable
     {
-        private static ApplicationDbContext db = new ApplicationDbContext();
+        //private static ApplicationDbContext context = new ApplicationDbContext();
 
-        public static List<Departament> GetDepartaments()
-        {
-            var departament = db.Departaments.ToList();
-            departament.Add(new Departament
-            {
-                Id = 0,
-                Name = "(Seleccione departamento...)",
-            });
-            return departament.OrderBy(d => d.Name).ToList();
-        }
+        //public static List<Departament> GetDepartaments()
+        //{
+        //    var departament = context.Departaments.ToList();
+        //    departament.Add(new Departament
+        //    {
+        //        Id = 0,
+        //        Name = "[Seleccione departamento...]",
+        //    });
+        //    return departament.OrderBy(d => d.Name).ToList();
+        //}
 
-        public void Dispose()
-        {
-            db.Dispose();
-        }
+        //public void Dispose()
+        //{
+        //    context.Dispose();
+        //}
     }
 }

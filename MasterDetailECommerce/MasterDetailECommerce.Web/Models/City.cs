@@ -18,8 +18,11 @@ namespace MasterDetailECommerce.Web.Models
         public string Name { get; set; }
 
         [ForeignKey("Departament")]
+        [Required(ErrorMessage = "The field {0} is required")]
+        [Range(1,double.MaxValue, ErrorMessage ="You must select a {0}")]
         public int DepartamentId{ get; set; }
 
         public virtual Departament Departament { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }
