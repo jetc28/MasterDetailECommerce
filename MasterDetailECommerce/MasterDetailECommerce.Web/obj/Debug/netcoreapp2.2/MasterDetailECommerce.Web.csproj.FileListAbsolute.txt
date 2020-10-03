@@ -35,3 +35,13 @@ C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\
 C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Products\Details.g.cshtml.cs
 C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Products\Edit.g.cshtml.cs
 C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Products\Index.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Departaments\Create.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Departaments\Delete.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Departaments\Details.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Departaments\Edit.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Departaments\Index.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Cities\Create.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Cities\Delete.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Cities\Details.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Cities\Edit.g.cshtml.cs
+C:\Users\MIGUEL\Source\Repos\jetc28\MasterDetailECommerce\MasterDetailECommerce\MasterDetailECommerce.Web\obj\Debug\netcoreapp2.2\Razor\Views\Cities\Index.g.cshtml.cs
